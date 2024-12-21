@@ -1,4 +1,5 @@
 "use client";
+import PopUp from "@/components/Admin-panel/PopUp";
 import ProductRow from "@/components/Admin-panel/ProductRow";
 import { setLoading } from "@/redux/features/loadingSlice";
 import axios from "axios";
@@ -57,6 +58,12 @@ const Dashboard = () => {
           </table>
         </div>
       </div>
+      {openPopup && (
+        <PopUp
+          setOpenPopup={setOpenPopup}
+          setUpdateTable={setUpdateTable}
+        ></PopUp>
+      )}
     </div>
   );
 };

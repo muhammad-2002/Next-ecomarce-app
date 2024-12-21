@@ -2,29 +2,23 @@ import Product from "@/libs/models/Products";
 import { mongoConnection } from "@/libs/MongoConnect";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(
+export const DELETE = async (
   request: NextRequest,
   URLParams: { params: { id: string } }
-) {
+) => {
+  console.log(URLParams);
   try {
+    const { id } = URLParams.params;
+    console.log(id);
     // Connect to MongoDB
     await mongoConnection();
-    const body = await request.json();
-    console.log(body);
-    const { id } = URLParams.params;
-    const { name, price, category } = body;
 
     // Fetch all products
-    const updatedProduct = await Product.findByIdAndUpdate(id, {
-      name,
-      price,
-      category,
-    });
+    await Product.findByIdAndDelete(id);
 
     // Return JSON response
     return NextResponse.json({
-      message: "Successfully Updated Product",
-      updatedProduct,
+      message: "Successfully delete",
     });
   } catch (error) {
     // Return error response
@@ -36,4 +30,4 @@ export async function PUT(
       { status: 400 }
     );
   }
-}
+};

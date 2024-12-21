@@ -13,15 +13,17 @@ const layout = ({ children }: { children: React.ReactNode }) => {
     return <Login></Login>;
   }
   return (
-    <div className="flex">
-      {/* side bar */}
-      <Sidebar></Sidebar>
-      <div className="h-full w-full">
-        {/* Navbar */}
-        <div className="bg-gray-200 p-4 h-[calc(100vh-64)]">{children}</div>
+    <>
+      <div className="flex">
+        {/* side bar */}
+        <Sidebar></Sidebar>
+        <div className="h-full w-full">
+          {/* Navbar */}
+          <div className="bg-gray-200 p-4 h-[calc(100vh-64px)]">{children}</div>
+        </div>
       </div>
-      {isLoading && <Loader></Loader>}
-    </div>
+      {/* {isLoading && <Loader></Loader>} */}
+    </>
   );
 };
 
